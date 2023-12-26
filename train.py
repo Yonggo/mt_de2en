@@ -6,8 +6,7 @@ from keras.callbacks import LearningRateScheduler
 from helper import *
 from keras.preprocessing.text import Tokenizer
 from keras.models import Sequential
-from keras.layers import GRU, Input, Dense, TimeDistributed, Embedding, Bidirectional, RepeatVector, CuDNNGRU, \
-    CuDNNLSTM, LSTM, Dropout
+from keras.layers import GRU, Input, Dense, TimeDistributed, Embedding, Bidirectional, RepeatVector
 from keras.optimizers import Adam
 from keras.losses import sparse_categorical_crossentropy
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
