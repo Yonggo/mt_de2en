@@ -13,7 +13,6 @@ if __name__ == '__main__':
         sentences_en = file.readlines()
     references = [[[words for words in sentence.split()]] for sentence in sentences_en]
     predictions = translate(to_be_translated_file, model_path)
-    #predictions = [[words for words in sentence.split()] for sentence in sentences_en]
     if len(predictions) != len(references):
         raise Exception("Size of predictions is different from size of references")
 
