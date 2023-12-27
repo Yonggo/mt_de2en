@@ -20,6 +20,7 @@ if __name__ == '__main__':
     for idx in range(len(predictions)):
         total_score += sentence_bleu(references[idx], predictions[idx])
 
-    mean_score = round(total_score, 4) / len(predictions)
+    mean_score = round(total_score, 7) / len(predictions)
 
-    print("BLEU-Score: {}".format(mean_score))
+    print("Sum BLEU-Score : {}".format(total_score))
+    print("Mean BLEU-Score: {}".format(mean_score))
