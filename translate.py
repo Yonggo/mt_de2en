@@ -10,7 +10,6 @@ def translate(path_de, path_model):
 
     with open(path_de, "r", encoding="utf8") as file:
         sentences = file.readlines()
-    #sentences = ["Zwei Chinesen stehen an einer Wandtafel."]
 
     voca_de = load_voca("data/de_voca.pickle")
     voca_en = load_voca("data/en_voca.pickle")
