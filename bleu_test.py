@@ -6,7 +6,7 @@ warnings.filterwarnings('ignore')
 
 reference_text_file = "data/test/example.europarl.en.test"
 to_be_translated_file = "data/test/example.europarl.de.test"
-model_path = "models/model-30-0.9031.keras"
+model_path = "models/model-04-0.9535.keras"
 
 if __name__ == '__main__':
     with open(reference_text_file, "r", encoding="utf8") as file:
@@ -18,9 +18,10 @@ if __name__ == '__main__':
 
     total_score = 0
     for idx in range(len(predictions)):
-        total_score += sentence_bleu(references[idx], predictions[idx])
+        prediction = predictions[idx].replace("<PAD>", "").strip().split()
+        total_score += round(sentence_bleu(references[idx], prediction, weights=(1, 0, 0, 0)), 4)
 
-    mean_score = round(total_score, 7) / len(predictions)
+    mean_score = round(total_score, 4) / len(predictions)
 
     print("Sum BLEU-Score : {}".format(total_score))
     print("Mean BLEU-Score: {}".format(mean_score))
