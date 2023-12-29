@@ -5,6 +5,10 @@ from tqdm import tqdm
 from helper import *
 
 
+def convert_to_text(pred_in_vec, dictionary):
+    words = [dictionary[np.argmax(word_candidates)] for word_candidates in pred_in_vec[0]]
+    return " ".join(words)
+
 def translate(path_de, path_model):
     model = keras.models.load_model(path_model)
 
@@ -34,15 +38,13 @@ def translate(path_de, path_model):
     predictions = []
     for input in tqdm(word_embedding_inputs, desc="Translating " + path_de):
         predicted = model.predict(input.reshape(1, -1), verbose=False)
-        predictions.append(predicted[0])
+        predictions.append(convert_to_text(predicted, vec2word_en))
 
-    outputs = [[vec2word_en[np.argmax(word_candidates)] for word_candidates in prediction] for prediction in predictions]
-
-    return outputs
+    return predictions
 
 
 if __name__ == '__main__':
-    outputs = translate("data/test/example.europarl.de.test", "models/model.keras")
+    outputs = translate("data/test/example.europarl.de.test", "models/model-04-0.9535.keras")
     translations = [" ".join(words) for words in outputs]
     results = []
     for translation in translations:
