@@ -11,6 +11,7 @@ def convert_to_text(pred_in_vec, dictionary):
 
 def translate(path_de, path_model):
     model = keras.models.load_model(path_model)
+    print("==> Used Model: {}".format(path_model))
 
     with open(path_de, "r", encoding="utf8") as file:
         sentences = file.readlines()
